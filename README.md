@@ -77,7 +77,8 @@ Each tool is independent and reusable.
 ### 📂 Flexible Input System
 
 - Paste code  
-- File input  
+- File input
+- Github URL of the source file
 
 ---
 
