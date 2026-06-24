@@ -1,6 +1,7 @@
 from src.core.orchestrator import full_review
 from src.tools.explanation_tool import explain_code
 from src.db.init_db import init_db
+from src.utils.github_loader import get_code_from_github_file
 
 from rich.console import Console # main output manager, supports colors, borders etc
 from rich.panel import Panel # boxes around text
@@ -13,19 +14,25 @@ def main() :
     console.print("[bold cyan]Code Explainer[/bold cyan]")
 
     while True :
-
-        #LANGUAGE INPUT
-        language = input("Enter language (java, c, c++, python, js) or type quit to exit : ").strip()
-        if language.lower() == "quit" or language.lower() == "exit" :
-            return
-        
+  
         #MODE INPUT
-        mode = input("Enter mode\n 1. Beginner friendly\n 2. Interview style\n 3. Unit Test Generation\n 4. Full Review\n Choose mode : ").strip().lower()
-        
+        mode = input("Enter mode\n 1. Beginner friendly\n 2. Interview style\n 3. Test Case Generation\n 4. Full Review\n 5. Exit\n Choose mode : ").strip().lower()
+        if mode == "5" :
+            return
+
         #CHOICE INPUT
-        choice = input("Enter input style\n 1. Paste code\n 2. File Input\n Choose : ")
+        choice = input("Enter input style\n 1. Paste code\n 2. File Input\n 3. Github URL\n 4. Exit\n Choose : ")
+        if choice == "4" :
+            return
+
+
+
+        #CHOICE - 1 Paste or write code
 
         if choice == "1" :
+            language = input("Enter source code language or type quit to exit : ").strip() #langugage input for paste code
+            if language.lower() == "quit" or language.lower() == "exit" :
+                return
             if language.lower() == "quit" :
                 return
             lines = []
@@ -40,8 +47,11 @@ def main() :
         
             code = "\n".join(lines)
         
+        #CHOICE - 2 File input
+
         elif choice == "2" :
             path = input("Enter input file path : ")
+
             if path.lower() in ["quit", "exit"]:
                 return
             
@@ -51,6 +61,18 @@ def main() :
             except FileNotFoundError :
                 console.print("[red]Invalid File Path[/red]")
                 continue
+            language = input("Enter language of the file : ") #langugage input for file input
+
+        #CHOICE - 3 Github URL
+
+        elif choice == "3" :
+            github_url = input("Enter github URL of the file for source code : ")
+            try :
+                code = get_code_from_github_file(github_url)
+            except Exception as e :
+                console.print(f"[red]Error: {str(e)}[/red]")
+                continue
+            language = input("Enter language of the file : ") #langugage input for github URL
         
         else :
             console.print("[red]Invalid Input[/red]")
