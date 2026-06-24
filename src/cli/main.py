@@ -26,9 +26,7 @@ def main() :
             return
 
 
-
         #CHOICE - 1 Paste or write code
-
         if choice == "1" :
             language = input("Enter source code language or type quit to exit : ").strip() #langugage input for paste code
             if language.lower() == "quit" or language.lower() == "exit" :
@@ -48,7 +46,6 @@ def main() :
             code = "\n".join(lines)
         
         #CHOICE - 2 File input
-
         elif choice == "2" :
             path = input("Enter input file path : ")
 
@@ -64,7 +61,6 @@ def main() :
             language = input("Enter language of the file : ") #langugage input for file input
 
         #CHOICE - 3 Github URL
-
         elif choice == "3" :
             github_url = input("Enter github URL of the file for source code : ")
             try :
