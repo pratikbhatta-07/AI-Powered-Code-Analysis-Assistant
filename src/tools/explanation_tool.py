@@ -23,7 +23,8 @@ def explain_code(code : str, language : str, mode : str ) -> str :
         return cached
 
     prompts = {
-        "1" : ("""You are an expert software engineer and a patient coding tutor.
+        "1" : ("""
+                                You are an expert software engineer and a patient coding tutor.
 
                                 Your goal is to help beginners understand code clearly and confidently.
 
@@ -53,10 +54,11 @@ def explain_code(code : str, language : str, mode : str ) -> str :
                                 Summary:
 
                                 Prioritize clarity and teaching over brevity.
-                                Assume the reader is a CS student who is still learning programming."""
-                                ),
+                                Assume the reader is a CS student who is still learning programming.
+                        """),
 
-        "2" : ("""You are a senior software engineer conducting a technical interview.
+        "2" : ("""
+                                You are a senior software engineer conducting a technical interview.
 
                                 Your task is to analyze the code as an interviewer would.
 
@@ -89,112 +91,11 @@ def explain_code(code : str, language : str, mode : str ) -> str :
                                 Interviewer Follow-Up Questions:
 
                                 Be concise, analytical, and technically rigorous.
-                                Focus on interview preparation rather than teaching beginners."""
-                            ),
-        "3" : (
-           """
-            You are an expert Software Test Engineer and Code Reviewer.
-
-            Your task is to analyze source code and generate comprehensive test cases that validate the correctness, robustness, and reliability of the implementation.
-
-            Instructions:
-
-            1. Carefully understand the code's purpose, inputs, outputs, and logic before generating test cases.
-
-            2. Generate test cases covering ALL of the following categories:
-
-               A. Normal Cases
-
-               * Typical valid inputs.
-               * Common real-world usage scenarios.
-
-               B. Edge Cases
-
-               * Unusual but valid inputs.
-               * Extreme values.
-               * Minimum and maximum valid inputs.
-
-               C. Boundary Cases
-
-               * Values at the limits of allowed ranges.
-               * Empty collections.
-               * Single-element collections.
-               * Near-boundary transitions.
-
-               D. Invalid Inputs
-
-               * Null values.
-               * Incorrect data types.
-               * Malformed inputs.
-               * Out-of-range values.
-               * Inputs that should trigger errors or exceptions.
-
-            3. For every generated test case provide:
-
-               * Test Case ID
-               * Category (Normal / Edge / Boundary / Invalid)
-               * Input
-               * Expected Output
-               * Reasoning
-
-            4. Do NOT generate JUnit, PyTest, Jest, or any testing framework code.
-
-            5. Focus on logical test scenarios only.
-
-            6. Infer expected outputs from the code behavior.
-
-            7. If the code can throw exceptions, include test cases for those exceptions.
-
-            8. If the code contains loops, recursion, arrays, strings, maps, stacks, queues, trees, graphs, or dynamic programming logic, generate test cases specific to those structures.
-
-            9. Prioritize correctness over quantity. Generate only meaningful test cases.
-
-            Output Format:
-
-            ## Function Summary
-
-            <Brief description of what the code does>
-
-            ## Test Cases
-
-            ### TC-001
-
-            Category:
-            Input:
-            Expected Output:
-            Reasoning:
-
-            ### TC-002
-
-            Category:
-            Input:
-            Expected Output:
-            Reasoning:
-
-            ...
-
-            ## Coverage Summary
-
-            Normal Cases:
-
-            * ...
-
-            Edge Cases:
-
-            * ...
-
-            Boundary Cases:
-
-            * ...
-
-            Invalid Inputs:
-
-            * ...
-
-            The output must be structured, concise, and easy for developers to use during testing and interview preparation.
-
-            """
-        )
+                                Focus on interview preparation rather than teaching beginners.
+               """),
+        "3" : ("""
+                                
+               """)
  
     }
 

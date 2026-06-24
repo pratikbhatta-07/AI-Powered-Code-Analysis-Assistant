@@ -1,5 +1,9 @@
 from src.core.orchestrator import full_review
+
 from src.tools.explanation_tool import explain_code
+from src.tools.find_bug_tool import find_bug
+from src. tools.test_tool import generate_tests
+
 from src.db.init_db import init_db
 from src.utils.github_loader import get_code_from_github_file
 
@@ -11,13 +15,13 @@ console = Console()
 
 def main() :
 
-    console.print("[bold cyan]Code Explainer[/bold cyan]")
+    console.print("[bold cyan]Code Analyser[/bold cyan]")
 
     while True :
   
         #MODE INPUT
-        mode = input("Enter mode\n 1. Beginner friendly\n 2. Interview style\n 3. Test Case Generation\n 4. Full Review\n 5. Exit\n Choose mode : ").strip().lower()
-        if mode == "5" :
+        mode = input("Enter mode\n 1. Beginner friendly\n 2. Interview style\n 3. Test Case Generation\n 4. Find Bug\n 5. Full Review\n 6. Exit\n Choose mode : ").strip().lower()
+        if mode == "6" :
             return
 
         #CHOICE INPUT
@@ -95,8 +99,13 @@ def main() :
         with console.status(
             "[bold green]Analyzing code..."
         ): 
-            if mode == "4" :
+            #MODE HANDLING LOGIC
+            if mode == "5" :
                 result = full_review(code, language)
+            elif mode == "4" :
+                result = find_bug(code, language, mode)
+            elif mode == "3" :
+                result = generate_tests(code, language, mode)
             else : 
                 result = explain_code(code, language, mode)  # for adding loading spinner
 
