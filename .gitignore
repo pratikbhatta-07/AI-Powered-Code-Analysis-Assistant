@@ -1,3 +1,10 @@
+.DS_Store
 __pycache__/
 .env
 venv/
+*.pyc
+.vscode/
+backend/data/cache.db
+backend/cache/cache.json
+AI-Powered-Code-Analysis-Assistant/data/cache.db
+AI-Powered-Code-Analysis-Assistant/cache/cache.json
